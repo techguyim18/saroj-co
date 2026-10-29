@@ -1,0 +1,1889 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authority Master Control Center | Saroj&co</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="admin.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+  </head>
+  <body class="admin-body">
+    <!-- TOP HEADER -->
+    <header class="admin-header">
+      <div class="admin-header-brand">
+        <a
+          class="logo"
+          href="index.html"
+          aria-label="Saroj&co"
+          style="
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+          "
+        >
+          <img
+            src="images/logo-256.png"
+            alt="Saroj&co"
+            class="header-logo-img"
+            style="
+              height: 48px;
+              width: 48px;
+              border-radius: 50%;
+              object-fit: cover;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            "
+          />
+        </a>
+        <span class="admin-header-badge">✦ AUTHORITY MASTER CONTROL</span>
+      </div>
+      <div class="admin-header-right">
+        <div id="engine-status" class="engine-status-pill">
+          <span class="dot"></span>
+          <span id="engine-status-text">Unified Local Engine</span>
+        </div>
+        <a
+          href="index.html"
+          target="_blank"
+          class="btn-secondary btn-sm"
+          style="text-decoration: none"
+        >
+          ↗ Open Live Website
+        </a>
+      </div>
+    </header>
+
+    <div class="admin-container">
+      <!-- SIDEBAR NAVIGATION -->
+      <aside class="admin-sidebar">
+        <div>
+          <div class="admin-nav-group">
+            <div class="admin-nav-label">Core Overview</div>
+            <button class="admin-nav-btn active" data-tab="dashboard-tab">
+              <span class="icon">📊</span> Dashboard Overview
+            </button>
+          </div>
+
+          <div class="admin-nav-group">
+            <div class="admin-nav-label">Commerce & Content</div>
+            <button class="admin-nav-btn" data-tab="products-tab">
+              <span class="icon">📦</span> Master Products
+              <span class="pill" id="nav-prod-count">19</span>
+            </button>
+            <button class="admin-nav-btn" data-tab="pages-tab">
+              <span class="icon">📝</span> Webpages & CMS
+            </button>
+            <button class="admin-nav-btn" data-tab="appearance-tab">
+              <span class="icon">🎨</span> Themes & Festive
+            </button>
+            <button class="admin-nav-btn" data-tab="orders-tab">
+              <span class="icon">🛍️</span> Customer Orders
+              <span class="pill" id="nav-order-count">0</span>
+            </button>
+            <button class="admin-nav-btn" data-tab="payments-tab">
+              <span class="icon">💳</span> Payment Modes & COD
+            </button>
+            <button class="admin-nav-btn" data-tab="coupons-tab">
+              <span class="icon">🏷️</span> Coupons & Offers
+            </button>
+          </div>
+
+          <div class="admin-nav-group">
+            <div class="admin-nav-label">Customer Relations</div>
+            <button class="admin-nav-btn" data-tab="customers-tab">
+              <span class="icon">👤</span> Customer Directory
+              <span class="pill" id="nav-cust-count">0</span>
+            </button>
+            <button class="admin-nav-btn" data-tab="messages-tab">
+              <span class="icon">✉️</span> Inquiries & Bespoke
+              <span class="pill" id="nav-msg-count">0</span>
+            </button>
+            <button class="admin-nav-btn" data-tab="newsletter-tab">
+              <span class="icon">👥</span> Newsletter Leads
+            </button>
+            <button class="admin-nav-btn" data-tab="system-tab">
+              <span class="icon">⚙️</span> Backup & Reset
+            </button>
+          </div>
+        </div>
+
+        <div class="admin-sidebar-footer">Saroj&co Master CMS · v3.8</div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="admin-main">
+        <section id="dashboard-tab" class="admin-tab-content active">
+          <div class="card-header-flex">
+            <div>
+              <h2>Authority Dashboard</h2>
+              <p class="desc">
+                Welcome back. Realtime overview of website operations, catalog
+                and customer orders.
+              </p>
+            </div>
+            <div>
+              <button class="btn-gold" onclick="switchTab('products-tab')">
+                + Add New Product
+              </button>
+            </div>
+          </div>
+
+          <div class="admin-stats-grid">
+            <div class="stat-box">
+              <div class="stat-box-info">
+                <p>Catalog Products</p>
+                <h3 id="dash-prod-count">19</h3>
+              </div>
+              <div class="stat-box-icon">🕯️</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-box-info">
+                <p>Total Orders</p>
+                <h3 id="dash-orders-count">0</h3>
+              </div>
+              <div class="stat-box-icon">🛍️</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-box-info">
+                <p>Gross Sales</p>
+                <h3 id="dash-sales-total">₹0</h3>
+              </div>
+              <div class="stat-box-icon">💵</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-box-info">
+                <p>Customer Inquiries</p>
+                <h3 id="dash-inquiries-count">0</h3>
+              </div>
+              <div class="stat-box-icon">✉️</div>
+            </div>
+            <div
+              class="stat-box"
+              onclick="switchTab('customers-tab')"
+              style="cursor: pointer"
+              title="Click to view all customers"
+            >
+              <div class="stat-box-info">
+                <p>Total Customers</p>
+                <h3 id="dash-customers-count">0</h3>
+              </div>
+              <div class="stat-box-icon">👤</div>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="card-header-flex">
+              <h2>Recent Customer Orders</h2>
+              <button
+                class="btn-secondary btn-sm"
+                onclick="switchTab('orders-tab')"
+              >
+                View All Orders →
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="admin-data-table">
+                <thead>
+                  <tr>
+                    <th>Order Ref</th>
+                    <th>Customer</th>
+                    <th>Delivery City</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="dash-recent-orders-list">
+                  <tr>
+                    <td
+                      colspan="6"
+                      style="text-align: center; color: #94a3b8; padding: 25px"
+                    >
+                      No customer orders placed yet.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="card-header-flex">
+              <h2>Quick Control Shortcuts</h2>
+            </div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap">
+              <button
+                class="btn-secondary"
+                onclick="switchTab('appearance-tab')"
+              >
+                🎨 Change Theme / Festive Decor
+              </button>
+              <button class="btn-secondary" onclick="switchTab('pages-tab')">
+                📝 Edit Homepage Text
+              </button>
+              <button class="btn-secondary" onclick="switchTab('coupons-tab')">
+                🏷️ Manage Discount Coupons
+              </button>
+              <button class="btn-secondary" onclick="switchTab('messages-tab')">
+                ✉️ Check Bespoke Requests
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 2: MASTER PRODUCTS MANAGEMENT
+             ========================================== -->
+        <section id="products-tab" class="admin-tab-content">
+          <!-- ADD PRODUCT CARD -->
+          <div class="admin-card">
+            <div class="card-header-flex">
+              <div>
+                <h2>Publish New Candle / Fragrance Product</h2>
+                <p class="desc">
+                  Create an artisan product with full control over images,
+                  pricing, inventory and fragrance notes.
+                </p>
+              </div>
+            </div>
+
+            <form id="add-product-form">
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="prod-name">Product Name *</label>
+                  <input
+                    type="text"
+                    id="prod-name"
+                    placeholder="e.g. Royal Oud & Saffron Candle"
+                    required
+                  />
+                </div>
+
+                <div class="form-field">
+                  <label for="prod-category">Category *</label>
+                  <select id="prod-category" required>
+                    <option value="candles">Scented Candles</option>
+                    <option value="diffusers">Reed Diffusers</option>
+                    <option value="sprays">Room Sprays</option>
+                    <option value="melts">Wax Melts</option>
+                    <option value="gift-sets">Curated Gift Sets</option>
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label for="prod-price">Selling Price (₹) *</label>
+                  <input
+                    type="number"
+                    id="prod-price"
+                    placeholder="1499"
+                    min="0"
+                    required
+                  />
+                </div>
+
+                <div class="form-field">
+                  <label for="prod-mrp"
+                    >Original MRP (₹) (Optional - sets discount badge)</label
+                  >
+                  <input
+                    type="number"
+                    id="prod-mrp"
+                    placeholder="1799"
+                    min="0"
+                  />
+                </div>
+
+                <div class="form-field">
+                  <label for="prod-stock">Stock Quantity *</label>
+                  <input
+                    type="number"
+                    id="prod-stock"
+                    value="25"
+                    min="0"
+                    required
+                  />
+                </div>
+
+                <div class="form-field">
+                  <label for="prod-notes">Fragrance Notes</label>
+                  <input
+                    type="text"
+                    id="prod-notes"
+                    placeholder="e.g. Oud · Saffron · Warm Amber"
+                  />
+                </div>
+
+                <!-- IMAGE CONTROLS (URL OR FILE UPLOAD) -->
+                <div class="form-field full">
+                  <label
+                    >Product Image (Online URL OR Upload File from PC)</label
+                  >
+                  <div class="image-upload-wrapper">
+                    <div class="image-preview-box" id="add-img-preview-box">
+                      <span class="image-preview-placeholder"
+                        >No image selected</span
+                      >
+                    </div>
+                    <div>
+                      <input
+                        type="url"
+                        id="prod-image-url"
+                        placeholder="Paste image URL (https://images.unsplash.com/...)"
+                        style="margin-bottom: 8px"
+                      />
+                      <div
+                        style="display: flex; align-items: center; gap: 10px"
+                      >
+                        <input
+                          type="file"
+                          id="prod-image-file"
+                          accept="image/*"
+                          style="font-size: 13px"
+                        />
+                        <button
+                          type="button"
+                          class="btn-secondary btn-sm"
+                          id="clear-add-img-btn"
+                        >
+                          Clear Image
+                        </button>
+                      </div>
+                      <small
+                        style="
+                          color: var(--admin-muted);
+                          display: block;
+                          margin-top: 6px;
+                        "
+                        >Supported: JPG, PNG, WEBP, or high-res Unsplash
+                        links.</small
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-field full">
+                  <label for="prod-desc">Detailed Description</label>
+                  <textarea
+                    id="prod-desc"
+                    rows="3"
+                    placeholder="Artisan handcrafted notes, slow burn details, mood and aroma characteristics..."
+                  ></textarea>
+                </div>
+
+                <div
+                  class="form-field"
+                  style="
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 8px;
+                    margin-top: 5px;
+                  "
+                >
+                  <input
+                    type="checkbox"
+                    id="prod-featured"
+                    checked
+                    style="width: auto; height: 18px"
+                  />
+                  <label
+                    for="prod-featured"
+                    style="margin-bottom: 0; cursor: pointer"
+                    >Feature on Homepage Popular Carousel</label
+                  >
+                </div>
+
+                <div class="form-field full" style="margin-top: 10px">
+                  <button
+                    type="submit"
+                    class="btn-gold"
+                    style="width: fit-content; padding: 12px 28px"
+                  >
+                    ✨ Publish Product Live to Catalog
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- CATALOG TABLE -->
+          <div class="admin-card">
+            <div class="card-header-flex">
+              <div>
+                <h2>Active Product Catalog</h2>
+                <p class="desc">
+                  Filter, search, edit product details or adjust real-time stock
+                  levels.
+                </p>
+              </div>
+              <div style="display: flex; gap: 10px; align-items: center">
+                <input
+                  type="search"
+                  id="catalog-search"
+                  placeholder="Search catalog..."
+                  style="
+                    padding: 8px 12px;
+                    border-radius: 6px;
+                    border: 1px solid #cbd5e1;
+                    font-size: 13px;
+                  "
+                />
+                <select
+                  id="catalog-category-filter"
+                  style="
+                    padding: 8px 12px;
+                    border-radius: 6px;
+                    border: 1px solid #cbd5e1;
+                    font-size: 13px;
+                  "
+                >
+                  <option value="all">All Categories</option>
+                  <option value="candles">Candles</option>
+                  <option value="diffusers">Diffusers</option>
+                  <option value="sprays">Sprays</option>
+                  <option value="melts">Wax Melts</option>
+                  <option value="gift-sets">Gift Sets</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-data-table">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>ID</th>
+                    <th>Product Name & Notes</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock Control</th>
+                    <th>Featured</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-catalog-list">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 3: WEBPAGES & CMS MASTER CONTROL
+             ========================================== -->
+        <section id="pages-tab" class="admin-tab-content">
+          <div class="admin-card">
+            <div class="card-header-flex">
+              <div>
+                <h2>Master Webpages Content Controller</h2>
+                <p class="desc">
+                  Edit titles, headings, philosophy text, FAQs and customer
+                  reviews across any webpage on the website.
+                </p>
+              </div>
+            </div>
+
+            <div class="cms-subnav">
+              <button class="cms-subnav-btn active" data-cms="cms-home">
+                🏠 Homepage (index.html)
+              </button>
+              <button class="cms-subnav-btn" data-cms="cms-about">
+                📖 About Us (about.html)
+              </button>
+              <button class="cms-subnav-btn" data-cms="cms-bespoke">
+                ✨ Bespoke (bespoke.html)
+              </button>
+              <button class="cms-subnav-btn" data-cms="cms-faqs">
+                ❓ Help & FAQs (help.html)
+              </button>
+              <button class="cms-subnav-btn" data-cms="cms-policies">
+                📜 Shipping & Policies
+              </button>
+              <button class="cms-subnav-btn" data-cms="cms-contact">
+                📞 Contact & Concierge
+              </button>
+            </div>
+
+            <!-- SUBSECTION: HOMEPAGE -->
+            <div id="cms-home" class="cms-section active">
+              <form id="cms-home-form" class="form-grid">
+                <div class="form-field full">
+                  <h3 style="margin: 0 0 10px; font-size: 16px">
+                    Hero Banner Content
+                  </h3>
+                </div>
+                <div class="form-field">
+                  <label>Hero Eyebrow (Small Top Tagline)</label>
+                  <input type="text" id="cms-hero-eyebrow" />
+                </div>
+                <div class="form-field">
+                  <label>Main Hero Title</label>
+                  <input type="text" id="cms-hero-title" />
+                </div>
+                <div class="form-field full">
+                  <label>Hero Subtitle Description</label>
+                  <textarea id="cms-hero-subtitle" rows="2"></textarea>
+                </div>
+                <div class="form-field">
+                  <label>Primary Button Text</label>
+                  <input type="text" id="cms-hero-btn1" />
+                </div>
+                <div class="form-field">
+                  <label>Secondary Button Text</label>
+                  <input type="text" id="cms-hero-btn2" />
+                </div>
+
+                <div class="form-field full" style="margin-top: 15px">
+                  <button type="submit" class="btn-primary">
+                    💾 Save Homepage Content
+                  </button>
+                </div>
+              </form>
+
+              <!-- REVIEWS / TESTIMONIALS MANAGER -->
+              <div
+                style="
+                  margin-top: 35px;
+                  border-top: 1px solid var(--admin-border);
+                  padding-top: 25px;
+                "
+              >
+                <div class="card-header-flex">
+                  <div>
+                    <h3 style="margin: 0; font-size: 16px">
+                      Homepage Customer Testimonials
+                    </h3>
+                    <p class="desc">
+                      Add or edit real customer quotes displayed in the "Kind
+                      Words" section.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn-gold btn-sm"
+                    id="btn-add-review"
+                  >
+                    + Add Review
+                  </button>
+                </div>
+                <div class="table-responsive">
+                  <table class="admin-data-table">
+                    <thead>
+                      <tr>
+                        <th>Customer Name</th>
+                        <th>City / Location</th>
+                        <th>Rating</th>
+                        <th>Quote</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="cms-reviews-list"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- SUBSECTION: ABOUT US -->
+            <div id="cms-about" class="cms-section">
+              <form id="cms-about-form" class="form-grid">
+                <div class="form-field full">
+                  <label>Page Hero Headline</label>
+                  <input
+                    type="text"
+                    id="cms-about-title"
+                    placeholder="The Story of Saroj&co"
+                  />
+                </div>
+                <div class="form-field full">
+                  <label>Page Hero Subtitle</label>
+                  <textarea
+                    id="cms-about-sub"
+                    rows="2"
+                    placeholder="Creating moments of calm through intentional fragrance..."
+                  ></textarea>
+                </div>
+                <div class="form-field full">
+                  <label>Our Philosophy Main Heading</label>
+                  <input
+                    type="text"
+                    id="cms-about-story-title"
+                    placeholder="More Than a Fragrance"
+                  />
+                </div>
+                <div class="form-field full">
+                  <label>Story Main Paragraph</label>
+                  <textarea id="cms-about-story-p1" rows="4"></textarea>
+                </div>
+                <div class="form-field full">
+                  <button type="submit" class="btn-primary">
+                    💾 Save About Page Content
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- SUBSECTION: BESPOKE -->
+            <div id="cms-bespoke" class="cms-section">
+              <form id="cms-bespoke-form" class="form-grid">
+                <div class="form-field full">
+                  <label>Bespoke Page Headline</label>
+                  <input
+                    type="text"
+                    id="cms-bespoke-title"
+                    placeholder="Bespoke by Saroj&co"
+                  />
+                </div>
+                <div class="form-field full">
+                  <label>Bespoke Page Subtitle</label>
+                  <textarea
+                    id="cms-bespoke-sub"
+                    rows="3"
+                    placeholder="Whether for weddings, private events or corporate gifting..."
+                  ></textarea>
+                </div>
+                <div class="form-field full">
+                  <button type="submit" class="btn-primary">
+                    💾 Save Bespoke Page Content
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- SUBSECTION: FAQS -->
+            <div id="cms-faqs" class="cms-section">
+              <div class="card-header-flex">
+                <div>
+                  <h3 style="margin: 0; font-size: 16px">
+                    Help Center & FAQ Items
+                  </h3>
+                  <p class="desc">
+                    Manage questions and answers displayed on help.html &
+                    faq.html.
+                  </p>
+                </div>
+                <button type="button" class="btn-gold btn-sm" id="btn-add-faq">
+                  + Add New FAQ Question
+                </button>
+              </div>
+
+              <div class="table-responsive">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Category</th>
+                      <th>Question</th>
+                      <th>Answer</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cms-faqs-list"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- SUBSECTION: POLICIES -->
+            <div id="cms-policies" class="cms-section">
+              <form id="cms-policies-form" class="form-grid">
+                <div class="form-field">
+                  <label>Metro Cities Delivery Timeline</label>
+                  <input
+                    type="text"
+                    id="cms-policy-metro"
+                    placeholder="2 to 4 working days"
+                  />
+                </div>
+                <div class="form-field">
+                  <label>Rest of India Delivery Timeline</label>
+                  <input
+                    type="text"
+                    id="cms-policy-roi"
+                    placeholder="4 to 6 working days"
+                  />
+                </div>
+                <div class="form-field">
+                  <label>Hassle-Free Return Window</label>
+                  <input
+                    type="text"
+                    id="cms-policy-returns"
+                    placeholder="7-Day returns on unburned candles"
+                  />
+                </div>
+                <div class="form-field">
+                  <label>Payment Support Modes</label>
+                  <input
+                    type="text"
+                    id="cms-policy-payment"
+                    placeholder="Cash on Delivery available pan-India"
+                  />
+                </div>
+                <div class="form-field full">
+                  <button type="submit" class="btn-primary">
+                    💾 Save Shipping & Policy Settings
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- SUBSECTION: CONTACT & CONCIERGE -->
+            <div id="cms-contact" class="cms-section">
+              <form id="cms-contact-form" class="form-grid">
+                <div class="form-field">
+                  <label>Customer Support Email</label>
+                  <input type="email" id="cms-contact-email" />
+                </div>
+                <div class="form-field">
+                  <label>Support Phone / WhatsApp</label>
+                  <input type="text" id="cms-contact-phone" />
+                </div>
+                <div class="form-field full">
+                  <label>Operating Hours</label>
+                  <input type="text" id="cms-contact-hours" />
+                </div>
+                <div class="form-field">
+                  <label>Instagram URL</label>
+                  <input
+                    type="url"
+                    id="cms-instagram-url"
+                    placeholder="https://www.instagram.com/..."
+                  />
+                </div>
+                <div class="form-field">
+                  <label>Facebook URL</label>
+                  <input
+                    type="url"
+                    id="cms-facebook-url"
+                    placeholder="https://www.facebook.com/..."
+                  />
+                </div>
+                <div class="form-field full">
+                  <label>WhatsApp Link / Quick Chat</label>
+                  <input
+                    type="text"
+                    id="cms-whatsapp-url"
+                    placeholder="https://wa.me/919306353104..."
+                  />
+                </div>
+                <div class="form-field full">
+                  <label>Footer Brand Tagline</label>
+                  <textarea id="cms-footer-bio" rows="2"></textarea>
+                </div>
+                <div class="form-field full">
+                  <label>Footer Copyright Line</label>
+                  <input type="text" id="cms-footer-copyright" />
+                </div>
+                <div class="form-field full">
+                  <button type="submit" class="btn-primary">
+                    💾 Save Contact & Footer Details
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 4: APPEARANCE, THEMES & FESTIVE MODES
+             ========================================== -->
+        <section id="appearance-tab" class="admin-tab-content">
+          <div class="admin-card">
+            <div class="card-header-flex">
+              <div>
+                <h2>Website Theme Customization & Festive Modes</h2>
+                <p class="desc">
+                  Instantly alter site aesthetics, color palettes, glowing
+                  festive candles & luxury lamps, and global announcements.
+                </p>
+              </div>
+            </div>
+
+            <form id="admin-theme-form" class="form-grid">
+              <div class="form-field">
+                <label for="theme-preset-select"
+                  >Website Luxury Theme Preset</label
+                >
+                <select id="theme-preset-select">
+                  <option value="classic">Classic Sky-Blue Luxury</option>
+                  <option value="diwali">
+                    ✨ Royal Festive (Warm Amber & Gold)
+                  </option>
+                  <option value="noir">
+                    Minimalist Luxury Noir (Dark Mode)
+                  </option>
+                  <option value="royal">Royal Navy & Ivory</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="festival-decor-select"
+                  >Festive Animated Decoration</label
+                >
+                <select id="festival-decor-select">
+                  <option value="none">None (Standard Clean Luxury)</option>
+                  <option value="candle">
+                    🕯️ Glowing Luxury Candles (Warm Floating Flame)
+                  </option>
+                  <option value="lamp">
+                    🏮 Royal Ambient Lanterns & Lamps
+                  </option>
+                  <option value="candle-lamp">
+                    🕯️🏮 Signature Candle & Lamp Harmony
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-field full">
+                <label for="brand-name-input"
+                  >Store Brand Name / Logo Text</label
+                >
+                <input
+                  type="text"
+                  id="brand-name-input"
+                  placeholder="Saroj&co"
+                />
+              </div>
+
+              <div class="form-field full">
+                <label for="announcement-text-input"
+                  >Top Announcement Bar Text (Displayed across every
+                  page)</label
+                >
+                <input
+                  type="text"
+                  id="announcement-text-input"
+                  placeholder="Free shipping across India · Cash on Delivery available"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="announcement-status-select"
+                  >Announcement Bar Visibility</label
+                >
+                <select id="announcement-status-select">
+                  <option value="true">Visible to Visitors</option>
+                  <option value="false">Hidden</option>
+                </select>
+              </div>
+
+              <div class="form-field full" style="margin-top: 15px">
+                <button
+                  type="submit"
+                  class="btn-gold"
+                  style="width: fit-content"
+                >
+                  🎨 Apply & Save Theme Changes Live
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 5: CUSTOMER ORDERS MANAGEMENT
+             ========================================== -->
+        <section id="orders-tab" class="admin-tab-content">
+          <div class="admin-card">
+            <div class="card-header-flex">
+              <div>
+                <h2>Customer Orders Control</h2>
+                <p class="desc">
+                  Review incoming orders, examine line items, update delivery
+                  tracking and download customer receipts.
+                </p>
+              </div>
+              <div style="display: flex; gap: 10px; align-items: center">
+                <input
+                  type="search"
+                  id="orders-search"
+                  placeholder="Search orders..."
+                  style="
+                    padding: 8px 12px;
+                    border-radius: 6px;
+                    border: 1px solid #cbd5e1;
+                    font-size: 13px;
+                  "
+                />
+                <select
+                  id="orders-status-filter"
+                  style="
+                    padding: 8px 12px;
+                    border-radius: 6px;
+                    border: 1px solid #cbd5e1;
+                    font-size: 13px;
+                  "
+                >
+                  <option value="all">All Orders</option>
+                  <option value="Order Placed">Order Placed</option>
+                  <option value="Packed">Packed</option>
+                  <option value="Shipped">Shipped</option>
+                  <option value="Delivered">Delivered</option>
+                  <option value="Cancelled">Cancelled</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-data-table">
+                <thead>
+                  <tr>
+                    <th>Order Ref</th>
+                    <th>Date</th>
+                    <th>Customer & Phone</th>
+                    <th>Delivery City</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Update Tracking</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-orders-table-body">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 5C: CUSTOMERS & USERS DIRECTORY
+             ========================================== -->
+        <section id="customers-tab" class="admin-tab-content">
+          <div class="admin-card">
+            <div class="card-header-flex">
+              <div>
+                <h2>Customer Directory & User Accounts</h2>
+                <p class="desc">
+                  Complete database of registered customers, guest checkout
+                  profiles, delivery destinations, and lifetime order histories.
+                </p>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  gap: 10px;
+                  align-items: center;
+                  flex-wrap: wrap;
+                "
+              >
+                <input
+                  type="search"
+                  id="customers-search"
+                  placeholder="Search by name, phone, email, city..."
+                  style="
+                    padding: 8px 12px;
+                    border-radius: 6px;
+                    border: 1px solid #cbd5e1;
+                    font-size: 13px;
+                    min-width: 250px;
+                  "
+                />
+                <button
+                  type="button"
+                  class="btn-secondary btn-sm"
+                  id="btn-export-customers"
+                >
+                  📥 Export Customers (CSV)
+                </button>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-data-table">
+                <thead>
+                  <tr>
+                    <th>Customer</th>
+                    <th>Account Type</th>
+                    <th>Contact Info</th>
+                    <th>Shipping Destination</th>
+                    <th>Orders</th>
+                    <th>Total Spend</th>
+                    <th>First Active</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-customers-table-body">
+                  <tr>
+                    <td
+                      colspan="8"
+                      style="text-align: center; color: #94a3b8; padding: 35px"
+                    >
+                      Loading customer directory...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 5D: PAYMENT GATEWAYS & CONTROLS
+             ========================================== -->
+        <section id="payments-tab" class="admin-tab-content">
+          <div class="admin-card">
+            <div class="card-header-flex">
+              <div>
+                <h2>Payment Gateways & Mode Controls</h2>
+                <p class="desc">
+                  Configure online payment methods, toggle Cash on Delivery
+                  (COD), customize UPI ID and manage checkout payment rules.
+                </p>
+              </div>
+            </div>
+
+            <form id="admin-payments-form" class="form-grid">
+              <!-- CASH ON DELIVERY TOGGLE -->
+              <div
+                class="form-field full"
+                style="
+                  background: #fffbeb;
+                  padding: 18px;
+                  border-radius: 10px;
+                  border: 1.5px solid #fde68a;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  "
+                >
+                  <div>
+                    <h3
+                      style="margin: 0 0 4px; font-size: 15px; color: #92400e"
+                    >
+                      💵 Cash on Delivery (COD)
+                    </h3>
+                    <p style="margin: 0; font-size: 13px; color: #b45309">
+                      Enable or disable Cash on Delivery on checkout. When
+                      disabled, customers must pay online (UPI / Cards / Net
+                      Banking) to complete their order.
+                    </p>
+                  </div>
+                  <label
+                    class="switch"
+                    style="
+                      position: relative;
+                      display: inline-block;
+                      width: 52px;
+                      height: 28px;
+                      flex-shrink: 0;
+                    "
+                  >
+                    <input
+                      type="checkbox"
+                      id="pay-enable-cod"
+                      style="opacity: 0; width: 0; height: 0"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- PRE-PAID ONLINE PAYMENTS TOGGLE -->
+              <div
+                class="form-field full"
+                style="
+                  background: #ecfdf5;
+                  padding: 18px;
+                  border-radius: 10px;
+                  border: 1.5px solid #a7f3d0;
+                  margin-top: 5px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  "
+                >
+                  <div>
+                    <h3
+                      style="margin: 0 0 4px; font-size: 15px; color: #065f46"
+                    >
+                      📱 Online Payments (UPI, QR, Cards & Net Banking)
+                    </h3>
+                    <p style="margin: 0; font-size: 13px; color: #047857">
+                      Allow customers to pay instantly with Google Pay, PhonePe,
+                      Paytm, BHIM QR code or Credit/Debit Cards.
+                    </p>
+                  </div>
+                  <label
+                    class="switch"
+                    style="
+                      position: relative;
+                      display: inline-block;
+                      width: 52px;
+                      height: 28px;
+                      flex-shrink: 0;
+                    "
+                  >
+                    <input
+                      type="checkbox"
+                      id="pay-enable-online"
+                      checked
+                      style="opacity: 0; width: 0; height: 0"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- STORE UPI ID -->
+              <div class="form-field">
+                <label for="pay-upi-id">Store Official UPI ID / VPA *</label>
+                <input
+                  type="text"
+                  id="pay-upi-id"
+                  placeholder="e.g. sarojandco@okhdfcbank"
+                  required
+                />
+                <small style="color: #64748b"
+                  >The QR code on checkout automatically links to this UPI
+                  ID.</small
+                >
+              </div>
+
+              <!-- UPI BENEFICIARY NAME -->
+              <div class="form-field">
+                <label for="pay-upi-name"
+                  >UPI Merchant / Beneficiary Name *</label
+                >
+                <input
+                  type="text"
+                  id="pay-upi-name"
+                  placeholder="e.g. Saroj&co Luxury Fragrance"
+                  required
+                />
+              </div>
+
+              <!-- RAZORPAY KEY ID -->
+              <div class="form-field">
+                <label for="pay-razorpay-key">Razorpay Key ID (Optional)</label>
+                <input
+                  type="text"
+                  id="pay-razorpay-key"
+                  placeholder="rzp_test_..."
+                />
+                <small style="color: #64748b"
+                  >For live gateway checkout or test simulation.</small
+                >
+              </div>
+
+              <!-- CHECKOUT BANNER NOTE -->
+              <div class="form-field">
+                <label for="pay-custom-note"
+                  >Customer Checkout Security Note</label
+                >
+                <input
+                  type="text"
+                  id="pay-custom-note"
+                  placeholder="100% Encrypted & Secure Payment"
+                />
+              </div>
+
+              <div class="form-field full" style="margin-top: 10px">
+                <button
+                  type="submit"
+                  class="btn-gold"
+                  style="padding: 12px 28px; width: fit-content"
+                >
+                  💾 Save & Apply Payment Mode Controls
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 6: COUPONS & PROMOTIONS
+             ========================================== -->
+        <section id="coupons-tab" class="admin-tab-content">
+          <div class="admin-card">
+            <div class="card-header-flex">
+              <div>
+                <h2>Promotional Discount Coupons</h2>
+                <p class="desc">
+                  Create discount vouchers for marketing campaigns, festive
+                  events and customer acquisition.
+                </p>
+              </div>
+            </div>
+
+            <form
+              id="add-coupon-form"
+              class="form-grid"
+              style="
+                margin-bottom: 30px;
+                background: #f8fafc;
+                padding: 20px;
+                border-radius: 8px;
+                border: 1px solid var(--admin-border);
+              "
+            >
+              <div class="form-field">
+                <label for="coupon-code">Coupon Code *</label>
+                <input
+                  type="text"
+                  id="coupon-code"
+                  placeholder="e.g. LUXURY20"
+                  required
+                  style="text-transform: uppercase"
+                />
+              </div>
+              <div class="form-field">
+                <label for="coupon-type">Discount Type *</label>
+                <select id="coupon-type" required>
+                  <option value="percent">Percentage Off (%)</option>
+                  <option value="flat">Flat Amount Off (₹)</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="coupon-value">Discount Value *</label>
+                <input
+                  type="number"
+                  id="coupon-value"
+                  placeholder="e.g. 20 for 20% or 200 for ₹200"
+                  min="1"
+                  required
+                />
+              </div>
+              <div class="form-field">
+                <label for="coupon-min">Minimum Cart Subtotal (₹)</label>
+                <input
+                  type="number"
+                  id="coupon-min"
+                  placeholder="0"
+                  min="0"
+                  value="0"
+                />
+              </div>
+              <div class="form-field full">
+                <label for="coupon-label">Display Description</label>
+                <input
+                  type="text"
+                  id="coupon-label"
+                  placeholder="e.g. 20% off your entire order"
+                />
+              </div>
+              <div class="form-field full">
+                <button
+                  type="submit"
+                  class="btn-primary"
+                  style="width: fit-content"
+                >
+                  + Create Active Coupon
+                </button>
+              </div>
+            </form>
+
+            <div class="table-responsive">
+              <table class="admin-data-table">
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Type</th>
+                    <th>Discount</th>
+                    <th>Min Cart (₹)</th>
+                    <th>Label</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="coupons-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 7: MESSAGES & BESPOKE INQUIRIES
+             ========================================== -->
+        <section id="messages-tab" class="admin-tab-content">
+          <div class="admin-card">
+            <div class="card-header-flex">
+              <div>
+                <h2>Customer Messages & Bespoke Inquiries</h2>
+                <p class="desc">
+                  Submissions from contact.html and personalized fragrance
+                  requests from bespoke.html.
+                </p>
+              </div>
+              <div>
+                <select
+                  id="msg-type-filter"
+                  style="
+                    padding: 8px 12px;
+                    border-radius: 6px;
+                    border: 1px solid #cbd5e1;
+                    font-size: 13px;
+                  "
+                >
+                  <option value="all">All Inquiries</option>
+                  <option value="Bespoke Request">Bespoke Requests</option>
+                  <option value="Contact Message">Contact Inquiries</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-data-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Customer Name</th>
+                    <th>Email Address</th>
+                    <th>Topic / Product</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-inquiries-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 8: NEWSLETTER SUBSCRIBERS
+             ========================================== -->
+        <section id="newsletter-tab" class="admin-tab-content">
+          <div class="admin-card">
+            <div class="card-header-flex">
+              <div>
+                <h2>Newsletter Subscribers</h2>
+                <p class="desc">
+                  Email leads collected through the footer subscription box
+                  across all pages.
+                </p>
+              </div>
+              <button class="btn-secondary btn-sm" id="btn-copy-newsletter">
+                📋 Copy All Emails
+              </button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-data-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Subscriber Email Address</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="newsletter-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="system-tab" class="admin-tab-content">
+          <div class="admin-card">
+            <div class="card-header-flex">
+              <div>
+                <h2>Data Backup, Export & Factory Reset</h2>
+                <p class="desc">
+                  Safeguard your website data, create JSON backups or restore
+                  factory catalog defaults.
+                </p>
+              </div>
+            </div>
+
+            <!-- ORDER EMAIL NOTIFICATION SYSTEM STATUS CARD -->
+            <div
+              style="
+                background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+                color: #ffffff;
+                padding: 24px;
+                border-radius: 10px;
+                margin-bottom: 24px;
+                border: 1px solid #334155;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: flex-start;
+                  flex-wrap: wrap;
+                  gap: 15px;
+                "
+              >
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 8px;
+                      margin-bottom: 6px;
+                    "
+                  >
+                    <span style="font-size: 20px">📧</span>
+                    <h3
+                      style="
+                        margin: 0;
+                        font-size: 17px;
+                        color: #f8fafc;
+                        font-weight: 600;
+                      "
+                    >
+                      Automated Order Email Alerts
+                    </h3>
+                    <span
+                      class="badge-pill success"
+                      style="font-size: 11px; padding: 2px 8px"
+                      >LIVE &amp; ACTIVE</span
+                    >
+                  </div>
+                  <p
+                    style="
+                      margin: 0 0 10px;
+                      font-size: 13px;
+                      color: #94a3b8;
+                      line-height: 1.5;
+                    "
+                  >
+                    Every customer order placed on the website automatically
+                    triggers an instant order dispatch report with full customer
+                    details, delivery address, items and payment reference.
+                  </p>
+                  <div
+                    style="
+                      font-size: 13px;
+                      color: #cbd5e1;
+                      background: rgba(255, 255, 255, 0.06);
+                      padding: 10px 14px;
+                      border-radius: 6px;
+                      display: inline-block;
+                    "
+                  >
+                    Recipient Email:
+                    <strong id="order-email-target" style="color: #38bdf8"
+                      >pulkitgill44@gmail.com</strong
+                    >
+                  </div>
+                </div>
+                <div
+                  style="
+                    background: rgba(255, 255, 255, 0.04);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border-radius: 8px;
+                    padding: 14px;
+                    max-width: 420px;
+                    font-size: 12px;
+                    color: #94a3b8;
+                    line-height: 1.6;
+                  "
+                >
+                  <strong
+                    style="color: #f1f5f9; display: block; margin-bottom: 4px"
+                    >🛠️ Where to change recipient email address:</strong
+                  >
+                  1. In code:
+                  <code
+                    style="
+                      color: #fbbf24;
+                      background: rgba(0, 0, 0, 0.4);
+                      padding: 2px 6px;
+                      border-radius: 4px;
+                    "
+                    >backend/app.py</code
+                  >
+                  at <strong style="color: #f8fafc">Line 30</strong><br />
+                  2. In env:
+                  <code
+                    style="
+                      color: #38bdf8;
+                      background: rgba(0, 0, 0, 0.4);
+                      padding: 2px 6px;
+                      border-radius: 4px;
+                    "
+                    >ADMIN_NOTIFICATION_EMAIL</code
+                  >
+                  in <code style="color: #f8fafc">backend/.env</code><br />
+                  3. Offline Log: All dispatches logged in
+                  <code
+                    style="
+                      color: #a7f3d0;
+                      background: rgba(0, 0, 0, 0.4);
+                      padding: 2px 6px;
+                      border-radius: 4px;
+                    "
+                    >backend/order_emails.log</code
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+              "
+            >
+              <div
+                style="
+                  background: #f8fafc;
+                  padding: 22px;
+                  border-radius: 8px;
+                  border: 1px solid var(--admin-border);
+                "
+              >
+                <h3 style="margin: 0 0 8px; font-size: 16px">
+                  💾 Export Website Backup
+                </h3>
+                <p
+                  style="
+                    font-size: 13px;
+                    color: var(--admin-muted);
+                    margin: 0 0 16px;
+                  "
+                >
+                  Download a complete JSON file with all products, custom text,
+                  orders, coupons and settings.
+                </p>
+                <button
+                  type="button"
+                  class="btn-primary"
+                  id="btn-export-backup"
+                >
+                  Download Full JSON Backup
+                </button>
+              </div>
+
+              <div
+                style="
+                  background: #f8fafc;
+                  padding: 22px;
+                  border-radius: 8px;
+                  border: 1px solid var(--admin-border);
+                "
+              >
+                <h3 style="margin: 0 0 8px; font-size: 16px">
+                  📂 Restore from Backup
+                </h3>
+                <p
+                  style="
+                    font-size: 13px;
+                    color: var(--admin-muted);
+                    margin: 0 0 16px;
+                  "
+                >
+                  Import a previously exported Saroj&co backup file to restore
+                  your catalog and configuration.
+                </p>
+                <input
+                  type="file"
+                  id="backup-file-input"
+                  accept=".json"
+                  style="margin-bottom: 12px; font-size: 13px"
+                />
+              </div>
+
+              <div
+                style="
+                  background: #fef2f2;
+                  padding: 22px;
+                  border-radius: 8px;
+                  border: 1px solid #fecaca;
+                "
+              >
+                <h3 style="margin: 0 0 8px; font-size: 16px; color: #991b1b">
+                  ⚠️ Factory Reset Catalog
+                </h3>
+                <p style="font-size: 13px; color: #7f1d1d; margin: 0 0 16px">
+                  Revert all 19 luxury products and default themes to initial
+                  state.
+                </p>
+                <button
+                  type="button"
+                  class="btn-danger"
+                  id="btn-reset-defaults"
+                >
+                  Reset to Factory Defaults
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="edit-product-modal" class="admin-modal-backdrop" hidden>
+      <div class="admin-modal-card">
+        <button
+          type="button"
+          class="modal-close-icon"
+          onclick="closeEditProductModal()"
+        >
+          ×
+        </button>
+        <h2 style="margin: 0 0 6px; font-size: 20px">Edit Product Details</h2>
+        <p class="desc" style="margin-bottom: 20px">
+          Modify product name, pricing, stock and images live.
+        </p>
+
+        <form id="edit-product-form">
+          <input type="hidden" id="edit-prod-id" />
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="edit-prod-name">Product Name *</label>
+              <input type="text" id="edit-prod-name" required />
+            </div>
+
+            <div class="form-field">
+              <label for="edit-prod-category">Category *</label>
+              <select id="edit-prod-category" required>
+                <option value="candles">Scented Candles</option>
+                <option value="diffusers">Reed Diffusers</option>
+                <option value="sprays">Room Sprays</option>
+                <option value="melts">Wax Melts</option>
+                <option value="gift-sets">Gift Sets</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="edit-prod-price">Selling Price (₹) *</label>
+              <input type="number" id="edit-prod-price" min="0" required />
+            </div>
+
+            <div class="form-field">
+              <label for="edit-prod-mrp">Original MRP (₹)</label>
+              <input type="number" id="edit-prod-mrp" min="0" />
+            </div>
+
+            <div class="form-field">
+              <label for="edit-prod-stock">Stock Quantity *</label>
+              <input type="number" id="edit-prod-stock" min="0" required />
+            </div>
+
+            <div class="form-field">
+              <label for="edit-prod-notes">Fragrance Notes</label>
+              <input type="text" id="edit-prod-notes" />
+            </div>
+
+            <!-- IMAGE EDIT CONTROLS -->
+            <div class="form-field full">
+              <label>Product Image (URL OR Upload New File)</label>
+              <div class="image-upload-wrapper">
+                <div class="image-preview-box" id="edit-img-preview-box"></div>
+                <div>
+                  <input
+                    type="url"
+                    id="edit-prod-image-url"
+                    placeholder="Paste image URL..."
+                    style="margin-bottom: 8px"
+                  />
+                  <div style="display: flex; align-items: center; gap: 10px">
+                    <input
+                      type="file"
+                      id="edit-prod-image-file"
+                      accept="image/*"
+                      style="font-size: 13px"
+                    />
+                    <button
+                      type="button"
+                      class="btn-secondary btn-sm"
+                      id="clear-edit-img-btn"
+                    >
+                      Remove Image
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-field full">
+              <label for="edit-prod-desc">Description</label>
+              <textarea id="edit-prod-desc" rows="3"></textarea>
+            </div>
+
+            <div
+              class="form-field"
+              style="
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 8px;
+              "
+            >
+              <input
+                type="checkbox"
+                id="edit-prod-featured"
+                style="width: auto; height: 18px"
+              />
+              <label
+                for="edit-prod-featured"
+                style="margin-bottom: 0; cursor: pointer"
+                >Feature on Homepage Popular Products</label
+              >
+            </div>
+
+            <div
+              class="form-field full"
+              style="display: flex; gap: 10px; margin-top: 15px"
+            >
+              <button type="submit" class="btn-gold">
+                💾 Save Product Changes
+              </button>
+              <button
+                type="button"
+                class="btn-secondary"
+                onclick="closeEditProductModal()"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="order-invoice-modal" class="admin-modal-backdrop" hidden>
+      <div class="admin-modal-card">
+        <button
+          type="button"
+          class="modal-close-icon"
+          onclick="closeOrderInvoiceModal()"
+        >
+          ×
+        </button>
+        <div id="invoice-modal-content"></div>
+      </div>
+    </div>
+
+    <div id="faq-modal" class="admin-modal-backdrop" hidden>
+      <div class="admin-modal-card">
+        <button
+          type="button"
+          class="modal-close-icon"
+          onclick="closeFaqModal()"
+        >
+          ×
+        </button>
+        <h2 style="margin: 0 0 6px; font-size: 20px" id="faq-modal-title">
+          FAQ Item
+        </h2>
+        <form id="faq-form" style="margin-top: 15px">
+          <input type="hidden" id="faq-id" />
+          <div class="form-grid">
+            <div class="form-field full">
+              <label for="faq-category">Help Category *</label>
+              <select id="faq-category" required>
+                <option value="orders">Orders & COD</option>
+                <option value="shipping">Shipping & Delivery</option>
+                <option value="returns">Returns & Replacements</option>
+                <option value="products">Candle Care & Ingredients</option>
+              </select>
+            </div>
+            <div class="form-field full">
+              <label for="faq-question">Question *</label>
+              <input
+                type="text"
+                id="faq-question"
+                required
+                placeholder="e.g. How do I trim the wick?"
+              />
+            </div>
+            <div class="form-field full">
+              <label for="faq-answer">Answer *</label>
+              <textarea
+                id="faq-answer"
+                rows="4"
+                required
+                placeholder="Helpful, detailed answer for customers..."
+              ></textarea>
+            </div>
+            <div
+              class="form-field full"
+              style="display: flex; gap: 10px; margin-top: 10px"
+            >
+              <button type="submit" class="btn-primary">Save FAQ</button>
+              <button
+                type="button"
+                class="btn-secondary"
+                onclick="closeFaqModal()"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="review-modal" class="admin-modal-backdrop" hidden>
+      <div class="admin-modal-card">
+        <button
+          type="button"
+          class="modal-close-icon"
+          onclick="closeReviewModal()"
+        >
+          ×
+        </button>
+        <h2 style="margin: 0 0 6px; font-size: 20px" id="review-modal-title">
+          Customer Testimonial
+        </h2>
+        <form id="review-form" style="margin-top: 15px">
+          <input type="hidden" id="review-id" />
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="rev-name">Customer Name *</label>
+              <input
+                type="text"
+                id="rev-name"
+                required
+                placeholder="e.g. Priyanshu"
+              />
+            </div>
+            <div class="form-field">
+              <label for="rev-city">City / Region</label>
+              <input type="text" id="rev-city" placeholder="e.g. Bengaluru" />
+            </div>
+            <div class="form-field">
+              <label for="rev-stars">Rating (Stars)</label>
+              <select id="rev-stars">
+                <option value="5">★★★★★ (5 Stars)</option>
+                <option value="4">★★★★☆ (4 Stars)</option>
+                <option value="3">★★★☆☆ (3 Stars)</option>
+              </select>
+            </div>
+            <div class="form-field full">
+              <label for="rev-quote">Customer Quote *</label>
+              <textarea
+                id="rev-quote"
+                rows="3"
+                required
+                placeholder="Review text..."
+              ></textarea>
+            </div>
+            <div
+              class="form-field full"
+              style="display: flex; gap: 10px; margin-top: 10px"
+            >
+              <button type="submit" class="btn-primary">
+                Save Testimonial
+              </button>
+              <button
+                type="button"
+                class="btn-secondary"
+                onclick="closeReviewModal()"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div id="admin-toast-box"></div>
+
+    <script src="admin.js"></script>
+  </body>
+</html>
